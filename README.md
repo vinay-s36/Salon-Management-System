@@ -1,1 +1,1 @@
-# SalonSuite
+# Salon Management System
