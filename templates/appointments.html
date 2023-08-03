@@ -1,0 +1,207 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Appointments</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/home"><img src="{%static 'images/logo.png'%}" /></a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about-us">About</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/appointments">Appointments</a></li>
+          <li><a href="/contacts">Contact Us</a></li>
+          <li><a href="/">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="appointments-card">
+      <h1>My Appointments</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Service Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>O3 Facial</td>
+            <td>2023-08-05</td>
+            <td>10:30 AM</td>
+            <td class="status-fixed status-tooltip">
+              Fixed
+              <div class="status-message">Appointment is confirmed.</div>
+            </td>
+            <!-- <td class="status-fixed">Fixed</td> -->
+          </tr>
+          <tr>
+            <td>Fruit Facial</td>
+            <td>2023-08-10</td>
+            <td>11:00 AM</td>
+            <td class="status-pending status-tooltip">
+              Pending
+              <div class="status-message">
+                Appointment is pending confirmation.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Deluxe Manicure</td>
+            <td>2023-08-15</td>
+            <td>2:00 PM</td>
+            <td class="status-pending status-tooltip">
+              Pending
+              <div class="status-message">
+                Appointment is pending confirmation.
+              </div>
+            </td>
+          </tr>
+          <!-- Add more appointment rows here -->
+        </tbody>
+      </table>
+    </div>
+    <footer>&copy; Salon-suite. All rights reserved.<br /></footer>
+  </body>
+</html>
+
+<style>
+  /* Add some padding on document's body to prevent the content
+  to go underneath the header and footer */
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: rgb(247, 192, 195);
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+  }
+  a,
+  a:hover {
+    color: white;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  .logo img {
+    max-height: 50px; /* Adjust the height as needed */
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* margin-left: -230%; */
+  }
+
+  nav li {
+    display: inline-block;
+    margin-left: 10px; /* Adjust the spacing between menu items */
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #333;
+  }
+  footer {
+    font-size: large;
+    /* position: fixed; */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: black;
+  }
+  /* Some more styles to beutify this example */
+  nav a {
+    color: black;
+    text-decoration: none;
+    padding: 7px 25px;
+    display: inline-block;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+  .appointments-card {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .status-pending {
+    color: orange;
+    font-weight: bold;
+  }
+
+  .status-fixed {
+    color: green;
+    font-weight: bold;
+  }
+
+  h1 {
+    text-align: center;
+  }
+  .status-tooltip {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .status-tooltip .status-message {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .status-tooltip:hover .status-message {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>

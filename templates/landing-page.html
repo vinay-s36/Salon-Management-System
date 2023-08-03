@@ -1,0 +1,355 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SalonSuite</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <a><img src="{%static 'images/logo.png'%}" /></a>
+      </div>
+      <div class="user-icon">
+        <button class="button" onclick="toggleDropdown()">
+          <span class="user-details">
+            Login<i class="fas fa-chevron-down" style="margin-left: 5px"></i>
+          </span>
+        </button>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="/login"><div class="dropdown-item">User-Login</div></a>
+          <a href="/admin-login"><div class="dropdown-item">Admin-Login</div></a>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="container">
+          <h2 style="background-color: rgba(231, 233, 230, 0.562);">Welcome to Our Salon</h2>
+          <p style="background-color:rgba(231, 233, 230, 0.801);font-weight:500;">
+            Experience the best beauty services and manage your appointments
+            efficiently.
+          </p>
+          <a href="/login" class="btn">Book Appointment</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="services">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div class="service-item">
+          <img src="{%static 'images/landing-page/10.jpg' %}"alt="Service 1" />
+          <h3>Hair Styling</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="service-item">
+          <img src="{%static 'images/landing-page/12.jpg' %}" alt="Service 2" />
+          <h3>Facials</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="service-item">
+          <img src="{%static 'images/landing-page/13.jpg' %}" alt="Service 3" />
+          <h3>Manicure & Pedicure</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <a href="/login" style="margin-left: 55%;color: rgb(225, 55, 112);font-size: large;">view all services</a>
+      </div>
+    </section>
+
+    <section class="pricing">
+      <div class="container">
+        <h2>Our Pricing</h2>
+        <div class="price-item">
+          <h3>Basic Package</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <span class="price"><p>&#8377;999</p></span>
+        </div>
+        <div class="price-item">
+          <h3>Deluxe Package</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <span class="price"><p>&#8377;1499</p></span>
+        </div>
+        <div class="price-item">
+          <h3>Premium Package</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <span class="price"><p>&#8377;1999</p>
+          </span>
+        </div>
+        <a href="/login" style="margin-left: 55%;color: rgb(225, 55, 112);font-size:large;">more</a>
+      </div>
+    </section>
+    <button id="scrollToTopBtn" onclick="scrollToTop()">&#8593;</button>
+    </button>
+    <footer>
+      <div class="container">
+        <p>&copy; 2023 SalonSuite. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
+<style>
+    /* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color:#f5eef8;   
+  animation:infinite}
+  
+  /* Header Styles */
+  header {
+    background-color: #f8f8f8;
+    padding: 20px 0;
+  }
+  .login{
+    float: right;
+    position: relative ;
+    top:-47px;
+    right: 13px;
+    border:2px solid black;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .logo img{
+    max-height: 50px;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+  /* Hero Section Styles */
+  .hero {
+    background-image: url('../static/images/landing-page/1.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    padding: 100px 0;
+  }
+  
+  .hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .btn {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color:lightcoral;
+  }
+  
+  /* Services Section Styles */
+  .services {
+    background-color: #f8f8f8;
+    padding: 80px 0;
+  }
+  
+  .service-item {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .service-item img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .service-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .service-item p {
+    font-size: 16px;
+  }
+  
+  /* Pricing Section Styles */
+  .pricing {
+    padding: 80px 0;
+  }
+  
+  .price-item {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .price-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .price-item p {
+    font-size: 16px;
+  }
+  
+  .price p{
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  /* Contact Section Styles */
+  .contact {
+    padding: 80px 0;
+  }
+  
+  .contact input,
+  .contact textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  .contact button {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact button:hover {
+    background-color: #666;
+  }
+  
+  /* Footer Styles */
+  footer {
+    background-color: #f8f8f8;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  #scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+  
+  #scrollToTopBtn:hover {
+    opacity: 1;
+  }
+  .button {
+    position: absolute;
+    top: -60px;
+    /* right: 20px; */
+    /* margin-top: 5px; */
+  border-radius: 4px;
+  background-color: palevioletred;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 17px;
+  padding: 10px;
+  width: auto;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  margin-left: 93%;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  min-width: 115px;
+  z-index: 1;
+  padding: 10px;
+  top: calc(100% - 5px);
+  right: 10px;
+}
+.dropdown-item {
+  padding: 5px 0;
+  cursor: pointer;
+}
+.user-icon {
+  position: relative;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+.dropdown-item:hover{
+  background-color: #f5eef8;
+}
+</style>
+
+<script>
+    window.onscroll = function() {
+    scrollFunction();
+};
+  
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTopBtn").style.display = "block";
+    } else {
+      document.getElementById("scrollToTopBtn").style.display = "none";
+    }
+}
+
+function scrollToTop() {
+    const position = document.documentElement.scrollTop || document.body.scrollTop;
+    if (position > 0) {
+      window.requestAnimationFrame(scrollToTop);
+      window.scrollTo(0, position - position / 8);
+    }
+  }
+  function toggleDropdown() {
+        var dropdownMenu = document.getElementById("dropdownMenu");
+        dropdownMenu.classList.toggle("show");
+      }
+
+      // Close the dropdown when the user clicks outside of it
+      window.onclick = function (event) {
+        if (!event.target.closest(".user-icon")) {
+          var dropdowns = document.getElementsByClassName("dropdown-menu");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+              openDropdown.classList.remove("show");
+            }
+          }
+        }
+      };
+</script>

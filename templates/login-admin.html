@@ -1,0 +1,127 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <link
+      href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
+      rel="stylesheet"
+    />
+    <div id="login" class="container">
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="login well well-small">
+            <div class="center">
+              <img src="{%static 'images/logo.png'%}" alt="logo" />
+            </div>
+            <form
+              class="login-form"
+              id="UserLoginForm"
+              method="post"
+              accept-charset="utf-8"
+            >
+              <h3
+                style="
+                  text-align: center;
+                  color: black;
+                  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+                    'Helvetica Neue', sans-serif;
+                "
+              >
+                Admin Login
+              </h3>
+              <div class="control-group">
+                <div class="input-prepend">
+                  <span class="add-on"><i class="icon-user"></i></span>
+                  <input
+                    name="data[User][username]"
+                    required="required"
+                    placeholder="Username"
+                    maxlength="255"
+                    type="text"
+                    id="UserUsername"
+                  />
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="input-prepend">
+                  <span class="add-on"><i class="icon-lock"></i></span>
+                  <input
+                    name="data[User][password]"
+                    required="required"
+                    placeholder="Password"
+                    type="password"
+                    id="UserPassword"
+                  />
+                </div>
+              </div>
+              <div class="control-group">
+                <label id="remember-me">
+                  <input
+                    type="checkbox"
+                    name="data[User][remember_me]"
+                    value="1"
+                    id="UserRememberMe"
+                  />
+                  Remember Me?</label
+                >
+              </div>
+              <div class="control-group">
+                <input
+                  class="btn btn-primary btn-large btn-block"
+                  type="submit"
+                  value="Sign in"
+                  onclick="location.href='/admin-dashboard'"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>&copy; Salon-suite. All rights reserved.<br /></footer>
+  </body>
+</html>
+
+<style>
+  body {
+    background-image: url("/static/images/admin_login.jpg");
+    background-size: cover;
+    background-position: center center; /* Center the image horizontally and vertically */
+    background-attachment: fixed;
+  }
+  .container {
+    margin-top: 13%;
+  }
+  #login img {
+    margin: 10px 0;
+    max-height: 45px;
+  }
+  #login .center {
+    text-align: center;
+  }
+
+  #login .login {
+    max-width: 300px;
+    margin: 35px auto;
+  }
+
+  #login .login-form {
+    padding: 0px 25px;
+  }
+  footer {
+    font-size: large;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: black;
+  }
+</style>

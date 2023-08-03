@@ -1,0 +1,432 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/home"><img src="{%static 'images/logo.png'%}" /></a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about-us">About</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/appointments">Appointments</a></li>
+          <li><a href="/contacts">Contact Us</a></li>
+          <li><a href="/">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h1 style="align-items: center">Our Services</h1>
+    <h3 style="text-align: center">
+      "Discover our exquisite salon services, designed to enhance your beauty
+      and leave you feeling refreshed and rejuvenated."
+    </h3>
+    <br />
+    <div class="products-container">
+      <div class="product-box">
+        <img src="{%static 'images/services/Basic.jpg'%}" alt="Face Wash" />
+        <h2>Basic package</h2>
+        <p class="price">&#8377;999</p>
+        <button class="add-to-cart" data-service="O3 Facial">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/Deluxe.jpg'%}" alt="Face Wash" />
+        <h2>Deluxe package</h2>
+        <p class="price">&#8377;1499</p>
+        <button class="add-to-cart" data-service="O3 Facial">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/Premium.jpg'%}" alt="Face Wash" />
+        <h2>Premium package</h2>
+        <p class="price">&#8377;1999</p>
+        <button class="add-to-cart" data-service="O3 Facial">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/facial.jpg'%}" alt="Face Wash" />
+        <h2>O3 Facial</h2>
+        <p class="price">&#8377;1200</p>
+        <button class="add-to-cart" data-service="O3 Facial">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/fruit.jpg'%}" alt="Face Wash" />
+        <h2>Fruit Facial</h2>
+        <p class="price">&#8377;500</p>
+        <button class="add-to-cart" data-service="Fruit Facial">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/charcoal.jpg'%}" alt="Face Wash" />
+        <h2>Charcoal Facial</h2>
+        <p class="price">&#8377;1000</p>
+        <button class="add-to-cart" data-service="Charcoal Facial">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/deluxe1.webp'%}" alt="Face Wash" />
+        <h2>Deluxe Manicure</h2>
+        <p class="price">&#8377;500</p>
+        <button class="add-to-cart" data-service="Deluxe Manicure">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/deluxe2.webp'%}" alt="Face Wash" />
+        <h2>Deluxe Pedicure</h2>
+        <p class="price">&#8377;600</p>
+        <button class="add-to-cart" data-service="Deluxe Pedicure">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/menicure.jpg'%}" alt="Face Wash" />
+        <h2>Normal Manicure</h2>
+        <p class="price">&#8377;300</p>
+        <button class="add-to-cart" data-service="Normal Manicure">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/pedicure.jpg'%}" alt="Face Wash" />
+        <h2>Normal Pedicure</h2>
+        <p class="price">&#8377;400</p>
+        <button class="add-to-cart" data-service="Normal Pedicure">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/u-shape.jpg'%}" alt="Face Wash" />
+        <h2>U-Shape Hair Cut</h2>
+        <p class="price">&#8377;250</p>
+        <button class="add-to-cart" data-service="U-Shape Hair Cut">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/layer.jpg'%}" alt="Face Wash" />
+        <h2>Layer Haircut</h2>
+        <p class="price">&#8377;550</p>
+        <button class="add-to-cart" data-service="Layer Haircut">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img
+          src="{%static 'images/services/rebonding.webp'%}"
+          alt="Face Wash"
+        />
+        <h2>Rebonding</h2>
+        <p class="price">&#8377;3999</p>
+        <button class="add-to-cart" data-service="Rebonding">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img
+          src="{%static 'images/services/hair-color.jpg'%}"
+          alt="Face Wash"
+        />
+        <h2>Loreal Hair Color(Full)</h2>
+        <p class="price">&#8377;1200</p>
+        <button class="add-to-cart" data-service="Loreal Hair Color">
+          Book appointment
+        </button>
+      </div>
+      <div class="product-box">
+        <img src="{%static 'images/services/body-spa.jpg'%}" alt="Face Wash" />
+        <h2>Body Spa</h2>
+        <p class="price">&#8377;1500</p>
+        <button class="add-to-cart" data-service="Body Spa">
+          Book appointment
+        </button>
+      </div>
+      <!-- Add more product boxes here -->
+    </div>
+    <footer>&copy; Salon-suite. All rights reserved.<br /></footer>
+  </body>
+</html>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    /* margin: 20px; */
+    overflow-x: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+    background-color: rgb(247, 192, 195);
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  .logo img {
+    max-height: 50px; /* Adjust the height as needed */
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* margin-left: -230%; */
+  }
+
+  nav li {
+    display: inline-block;
+    margin-left: 10px; /* Adjust the spacing between menu items */
+  }
+  h3 {
+    font-family: "Montserrat", sans-serif;
+  }
+  a {
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    transition: 0.3s all ease;
+  }
+  a,
+  a:hover {
+    color: white;
+  }
+  nav a {
+    color: black;
+    text-decoration: none;
+    padding: 7px 25px;
+    display: inline-block;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+  footer {
+    font-size: large;
+    position: relative;
+    margin-top: 4%;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: black;
+  }
+  .products-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    margin-left: 5%;
+  }
+
+  .product-box {
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    background-color: whitesmoke;
+    margin-bottom: 30px;
+  }
+
+  .product-box img {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .product-box h2 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+
+  .add-to-cart {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .add-to-cart:hover {
+    background-color: #0056b3;
+  }
+  .popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+
+  .popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .close-button {
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+  }
+  input[type="date"],
+  input[type="time"] {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  /* Style for the book appointment button */
+  button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+  .confirmation-message {
+    color: #333;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+</style>
+
+<script>
+  document.addEventListener("click", function (event) {
+    if (event.target.matches(".add-to-cart")) {
+      const serviceName = event.target.getAttribute("data-service");
+      showDateTimePopup(serviceName);
+    } else if (event.target.closest(".popup-content") === null) {
+      closePopups();
+    }
+  });
+
+  function showDateTimePopup(serviceName) {
+    let dateTimePopup = document.createElement("div");
+    dateTimePopup.classList.add("popup");
+
+    let dateTimeContent = document.createElement("div");
+    dateTimeContent.classList.add("popup-content");
+
+    let serviceNameHeading = document.createElement("h2");
+    serviceNameHeading.textContent = serviceName;
+
+    let dateInput = document.createElement("input");
+    dateInput.setAttribute("type", "date");
+    dateInput.setAttribute("id", "dateInput");
+    dateInput.required = true;
+
+    let timeInput = document.createElement("input");
+    timeInput.setAttribute("type", "time");
+    timeInput.setAttribute("id", "timeInput");
+    timeInput.required = true;
+
+    let dateTimeSubmitButton = document.createElement("button");
+    dateTimeSubmitButton.innerText = "Book Appointment";
+    dateTimeSubmitButton.addEventListener("click", () => {
+      const selectedDate = dateInput.value;
+      const selectedTime = timeInput.value;
+      if (isValidAppointment(selectedDate, selectedTime)) {
+        dateTimePopup.style.display = "none";
+        showConfirmationPopup(serviceName, selectedDate, selectedTime);
+      } else {
+        alert("Invalid appointment time. Please select a valid date and time.");
+      }
+    });
+
+    dateTimeContent.appendChild(serviceNameHeading);
+    dateTimeContent.appendChild(dateInput);
+    dateTimeContent.appendChild(timeInput);
+    dateTimeContent.appendChild(dateTimeSubmitButton);
+    dateTimePopup.appendChild(dateTimeContent);
+    document.body.appendChild(dateTimePopup);
+  }
+
+  function closePopups() {
+    const popups = document.querySelectorAll(".popup");
+    popups.forEach((popup) => {
+      popup.remove();
+    });
+  }
+
+  function isValidAppointment(selectedDate, selectedTime) {
+    const today = new Date();
+    const selectedDateTime = new Date(`${selectedDate} ${selectedTime}`);
+    const startTime = new Date(`${selectedDate} 09:00`);
+    const endTime = new Date(`${selectedDate} 21:00`);
+
+    return (
+      selectedDateTime >= today &&
+      selectedDateTime >= startTime &&
+      selectedDateTime <= endTime
+    );
+  }
+
+  function showConfirmationPopup(serviceName, selectedDate, selectedTime) {
+    let confirmationPopup = document.createElement("div");
+    confirmationPopup.classList.add("popup");
+
+    let confirmationContent = document.createElement("div");
+    confirmationContent.classList.add("popup-content");
+
+    let confirmationMessage = document.createElement("p");
+    confirmationMessage.innerText = `Thank you for booking the "${serviceName}" service on ${selectedDate} at ${selectedTime}. Your appointment is confirmed.`;
+
+    confirmationContent.appendChild(confirmationMessage);
+    confirmationPopup.appendChild(confirmationContent);
+
+    document.body.appendChild(confirmationPopup);
+  }
+</script>

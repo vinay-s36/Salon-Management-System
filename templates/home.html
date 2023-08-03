@@ -1,0 +1,114 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/home"><img src="{%static 'images/logo.png'%}" /></a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about-us">About</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/appointments">Appointments</a></li>
+          <li><a href="/contacts">Contact Us</a></li>
+          <li><a href="/">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+    <button
+      type="submit"
+      class="submit1"
+      onclick="location.href='/services'"
+    ></button>
+    <footer>&copy; Salon-suite. All rights reserved.<br /></footer>
+  </body>
+</html>
+
+<style>
+  /* Add some padding on document's body to prevent the content
+  to go underneath the header and footer */
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url("static/images/Home.png");
+    background-size: cover;
+    overflow-x: hidden;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  .logo img {
+    max-height: 50px; /* Adjust the height as needed */
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* margin-left: -230%; */
+  }
+
+  nav li {
+    display: inline-block;
+    margin-left: 10px; /* Adjust the spacing between menu items */
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #333;
+  }
+  footer {
+    font-size: large;
+    position: relative;
+    margin-top: 45%;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: black;
+    background-color: whitesmoke;
+  }
+  /* Some more styles to beutify this example */
+  nav a {
+    color: black;
+    text-decoration: none;
+    padding: 7px 25px;
+    display: inline-block;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+  .container p {
+    line-height: 200px; /* Create scrollbar to test positioning */
+  }
+  a,
+  a:hover {
+    color: white;
+  }
+  .submit1 {
+    background-color: transparent;
+    border-radius: 50px;
+    width: 180px;
+    height: 60px;
+    position: absolute;
+    margin-left: 973px;
+    margin-top: 410px;
+    border: 2px;
+    cursor: pointer;
+  }
+</style>

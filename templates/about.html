@@ -1,0 +1,139 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>About-us</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/home"><img src="{%static 'images/logo.png'%}" /></a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about-us">About</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/appointments">Appointments</a></li>
+          <li><a href="/contacts">Contact Us</a></li>
+          <li><a href="/">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="card">
+      <div class="card-content">
+        <div class="card-text">
+          <h1>About us</h1>
+          <p>
+            Welcome to our salon, where beauty and relaxation come together. Our
+            skilled team is here to make you look and feel your best. From
+            haircuts and facials to soothing massages, we offer a range of
+            services tailored to your needs. Step into our calming space and let
+            us take care of you. Leave feeling refreshed and confident. Book
+            your appointment now for a truly enjoyable salon experience.
+          </p>
+        </div>
+      </div>
+      <div class="card-image">
+        <img src="{%static 'images/about.webp'%}" alt="Image" />
+      </div>
+    </div>
+    <footer>&copy; Salon-suite. All rights reserved.<br /></footer>
+  </body>
+</html>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: rgb(247, 192, 195);
+  }
+
+  .card {
+    display: flex;
+    position: relative;
+    max-width: 800px;
+    height: 400px;
+    padding: 20px;
+    /* background-color: lavender; */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-left: 20%;
+  }
+
+  .card-content {
+    flex: 1;
+    padding: 10px;
+  }
+  a,
+  a:hover {
+    color: white;
+  }
+  .card-text {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .card-image {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .card-image img {
+    margin-top: 5%;
+    max-width: 100%;
+    height: 90%;
+    border-radius: 5px;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  .logo img {
+    max-height: 50px; /* Adjust the height as needed */
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* margin-left: -230%; */
+  }
+
+  nav li {
+    display: inline-block;
+    margin-left: 10px; /* Adjust the spacing between menu items */
+  }
+
+  nav a {
+    color: black;
+    text-decoration: none;
+    padding: 7px 25px;
+    display: inline-block;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+  footer {
+    font-size: large;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: black;
+  }
+</style>
