@@ -33,6 +33,7 @@
         <!-- login form -->
         <div class="login-box">
           <input
+            name=""
             type="email"
             class="email ele"
             placeholder="youremail@email.com"
@@ -40,25 +41,33 @@
           <input type="password" class="password ele" placeholder="password" />
           <button class="clkbtn" onclick="location.href='/home'">Login</button>
         </div>
-
+<form method="POST" action="/signup">{% csrf_token %}
         <!-- signup form -->
         <div class="signup-box">
-          <input type="text" class="name ele" placeholder="Enter your name" />
           <input
+            name="username"
+            type="text"
+            class="name ele"
+            placeholder="Enter your name"
+          />
+          <input
+            name="email"
             type="email"
             class="email ele"
             placeholder="youremail@email.com"
           />
           <input type="password" class="password ele" placeholder="password" />
           <input
+            name="password"
             type="password"
             class="password ele"
             placeholder="Confirm password"
           />
-          <button class="clkbtn" onclick="location.href='/home'">Signup</button>
+          <button class="clkbtn" type="submit">Signup</button>
         </div>
       </div>
     </div>
+  </form>
     <!-- <script src="index.js"></script> -->
   </body>
 </html>

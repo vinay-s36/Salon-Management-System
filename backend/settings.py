@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-n)kco+w(pt*sd)mql=+eli5&@3!g0h#0-8hj@+q+y7eykdv280
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://8000-tmsagaroffic-salonsuite-fmq0i4xcf6n.ws-us102.gitpod.io/','127.0.0.1']
+    'https://8000-tmsagaroffic-salonsuite-fmq0i4xcf6n.ws-us102.gitpod.io/', '127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'backend',
 ]
 
 MIDDLEWARE = [
