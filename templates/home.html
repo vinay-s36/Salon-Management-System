@@ -3,7 +3,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Home</title>
+    <title>SalonSuite | Home</title>
+    <link
+      rel="icon"
+      href="{% static 'favicon/favicon.ico' %}"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <header>
@@ -38,6 +43,7 @@
     padding: 0;
     height: 100vh;
     background-image: url("static/images/Home.png");
+    background-repeat: no-repeat;
     background-size: cover;
     overflow-x: hidden;
   }
@@ -81,7 +87,6 @@
     padding: 20px;
     text-align: center;
     color: black;
-    background-color: whitesmoke;
   }
   /* Some more styles to beutify this example */
   nav a {

@@ -4,7 +4,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>SalonSuite | Admin-Login</title>
+    <link
+      rel="icon"
+      href="{% static 'favicon/favicon.ico' %}"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <link
@@ -18,12 +23,19 @@
             <div class="center">
               <img src="{%static 'images/logo.png'%}" alt="logo" />
             </div>
+            {% for message in messages %}
+            <p id="error-message" style="color: red; margin-left: 10%">
+              {{ message }}
+            </p>
+            {% endfor %}
             <form
               class="login-form"
               id="UserLoginForm"
-              method="post"
               accept-charset="utf-8"
+              action="/asignin"
+              method="POST"
             >
+              {% csrf_token %}
               <h3
                 style="
                   text-align: center;
@@ -35,11 +47,12 @@
               >
                 Admin Login
               </h3>
+
               <div class="control-group">
                 <div class="input-prepend">
                   <span class="add-on"><i class="icon-user"></i></span>
                   <input
-                    name="data[User][username]"
+                    name="username"
                     required="required"
                     placeholder="Username"
                     maxlength="255"
@@ -52,7 +65,7 @@
                 <div class="input-prepend">
                   <span class="add-on"><i class="icon-lock"></i></span>
                   <input
-                    name="data[User][password]"
+                    name="password"
                     required="required"
                     placeholder="Password"
                     type="password"
@@ -76,7 +89,6 @@
                   class="btn btn-primary btn-large btn-block"
                   type="submit"
                   value="Sign in"
-                  onclick="location.href='/admin-dashboard'"
                 />
               </div>
             </form>
@@ -125,3 +137,12 @@
     color: black;
   }
 </style>
+
+<script>
+  setTimeout(function () {
+    var errorMessage = document.getElementById("error-message");
+    if (errorMessage) {
+      errorMessage.style.display = "none";
+    }
+  }, 3000);
+</script>

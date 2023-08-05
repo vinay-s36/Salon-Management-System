@@ -8,7 +8,8 @@
       content="width=device-width,
 						initial-scale=1.0"
     />
-    <title>LOGIN</title>
+    <title>SalonSuite | Login</title>
+    <link rel="icon" href="{% static 'favicon/favicon.ico' %}" type="image/x-icon">
   </head>
 
   <body>
@@ -29,36 +30,42 @@
 
       <!-- Form section that contains the
 			login and the signup form -->
+      {% for message in messages %}
+      <p id="error-message" style="color: red;margin-left: 10%">{{ message }}</p>
+      {% endfor %}
+      <form action="/signin" method="POST">{% csrf_token %}
       <div class="form-section">
         <!-- login form -->
         <div class="login-box">
           <input
-            name=""
+            name="email"
             type="email"
             class="email ele"
-            placeholder="youremail@email.com"
+            placeholder="youremail@gmail.com"
+            required="required"
           />
-          <input type="password" class="password ele" placeholder="password" />
-          <button class="clkbtn" onclick="location.href='/home'">Login</button>
+          <input type="password" class="password ele" placeholder="password" name="password"/>
+          <button class="clkbtn" type="submit" >Login</button>
         </div>
+      </form>
 <form method="POST" action="/signup">{% csrf_token %}
         <!-- signup form -->
         <div class="signup-box">
           <input
-            name="username"
+            name="username1"
             type="text"
             class="name ele"
             placeholder="Enter your name"
           />
           <input
-            name="email"
+            name="email1"
             type="email"
             class="email ele"
             placeholder="youremail@email.com"
           />
           <input type="password" class="password ele" placeholder="password" />
           <input
-            name="password"
+            name="password1"
             type="password"
             class="password ele"
             placeholder="Confirm password"
@@ -372,4 +379,11 @@
     slider.classList.remove("moveslider");
     formSection.classList.remove("form-section-move");
   });
+
+  setTimeout(function() {
+            var errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                errorMessage.style.display = 'none';
+            }
+        }, 3000); 
 </script>

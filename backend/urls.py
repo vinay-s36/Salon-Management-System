@@ -15,18 +15,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import contacts, about, services, appointments, home, login, landing, dashboard, admin_login, signup
+from backendapp.views import contacts, about, services, appointments, home, login, landing, dashboard, admin_login, signup, all, logincon, adminsignin, new, rejected, accepted, search_appointment, search_invoice, invoice
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('contacts', contacts),
+    path('asignin', adminsignin),
     path('signup', signup),
+    path('signin', logincon),
     path('services', services),
     path('about-us', about),
     path('appointments', appointments),
     path('home', home),
     path('login', login),
     path('admin-dashboard', dashboard),
+    path('admin-dashboard/all-appointments', all),
+    path('admin-dashboard/new-appointments', new),
+    path('admin-dashboard/accepted-appointments', accepted),
+    path('admin-dashboard/rejected-appointments', rejected),
+    path('admin-dashboard/invoices', invoice),
+    path('admin-dashboard/search-invoice', search_invoice),
+    path('admin-dashboard/search-appointment', search_appointment),
     path('admin-login', admin_login),
     path('', landing),
 ]

@@ -18,7 +18,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}" />
 
-    <title>Contact-us</title>
+    <title>SalonSuite | Contact-us</title>
+    <link
+      rel="icon"
+      href="{% static 'favicon/favicon.ico' %}"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <header>
@@ -45,9 +50,10 @@
               <h3>Send us a message</h3>
               <form
                 class="mb-5"
-                method="post"
+                method="POST"
                 id="contactForm"
                 name="contactForm"
+                action="/contactsform"
               >
                 <div class="row">
                   <div class="col-md-6 form-group mb-5">
@@ -84,12 +90,12 @@
                     />
                   </div>
                   <div class="col-md-6 form-group mb-5">
-                    <label for="" class="col-form-label">Subject</label>
+                    <label for="subject" class="col-form-label">Subject</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="company"
-                      id="company"
+                      name="subject"
+                      id="subject"
                       placeholder="Subject name"
                     />
                   </div>
@@ -112,11 +118,12 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12 form-group">
-                    <input
+                    <button
                       type="submit"
-                      value="Send Message"
                       class="btn btn-primary rounded-0 py-2 px-4"
-                    />
+                    >
+                      Send Message
+                    </button>
                     <span class="submitting"></span>
                   </div>
                 </div>
