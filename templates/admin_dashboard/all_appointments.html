@@ -135,24 +135,24 @@
             <th>#</th>
             <th>Appointment Number</th>
             <th>Name</th>
+            <th>Service</th>
             <th>Mobile Number</th>
             <th>Appointment Date</th>
             <th>Appointment Time</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <!-- {% for appointment in appointments %} -->
+          {% for appointment in appointments %}
           <tr>
             <td>{{ forloop.counter }}</td>
           <td>{{ appointment.appointment_number }}</td>
           <td>{{ appointment.name }}</td>
-          <td>{{ appointment.mobile_number }}</td>
-          <td>{{ appointment.appointment_date }}</td>
-          <td>{{ appointment.appointment_time }}</td>
-          <a><td>View</td></a>
+          <td>{{ appointment.service }}</td>
+          <td>{{ appointment.phone }}</td>
+          <td>{{ appointment.date }}</td>
+          <td>{{ appointment.time }}</td>
           </tr>
-          <!-- {% endfor %} -->
+          {% endfor %}
         </tbody>
       </table>
     </div>

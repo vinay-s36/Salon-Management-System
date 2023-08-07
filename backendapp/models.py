@@ -7,17 +7,18 @@ class user_details(models.Model):
     emailid = models.EmailField()
 
 
-class Service(models.Model):
-    service_name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=8, decimal_places=2)
-    image = models.ImageField(upload_to='images/products/')
-    # Add any other fields you need for appointment bookings
+# class Service(models.Model):
+#     service_name = models.CharField(max_length=100)
+#     price = models.DecimalField(max_digits=8, decimal_places=2)
+#     image = models.ImageField(upload_to='images/products/')
+#     # Add any other fields you need for appointment bookings
 
-    def __str__(self):
-        return self.service_name
+#     def __str__(self):
+#         return self.service_name
 
 
 class user_appointments(models.Model):
+    appointment_number = models.IntegerField(primary_key=True)
     service = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
@@ -26,17 +27,6 @@ class user_appointments(models.Model):
 
     def __str__(self):
         return f"{self.name}'s Appointment for {self.service} on {self.date} at {self.time}"
-
-
-class all_appointment(models.Model):
-    appointment_number = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=100)
-    mobile_number = models.CharField(max_length=20)
-    appointment_date = models.DateField()
-    appointment_time = models.TimeField()
-
-    def __str__(self):
-        return self.name
 
 
 class admin(models.Model):

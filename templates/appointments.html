@@ -31,6 +31,7 @@
       <table>
         <thead>
           <tr>
+            <th>#</th>
             <th>Appointment Number</th>
             <th>Service Name</th>
             <th>Date</th>
@@ -39,42 +40,19 @@
           </tr>
         </thead>
         <tbody>
+          {% for appointment in appointments%}
           <tr>
-            <td></td>
-            <td>O3 Facial</td>
-            <td>2023-08-05</td>
-            <td>10:30 AM</td>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ appointment.appointment_number}}</td>
+            <td>{{ appointment.service }}</td>
+            <td>{{ appointment.date }}</td>
+            <td>{{ appointment.time }}</td>
             <td class="status-fixed status-tooltip">
               Fixed
               <div class="status-message">Appointment is confirmed.</div>
             </td>
-            <!-- <td class="status-fixed">Fixed</td> -->
           </tr>
-          <tr>
-            <td></td>
-            <td>Fruit Facial</td>
-            <td>2023-08-10</td>
-            <td>11:00 AM</td>
-            <td class="status-pending status-tooltip">
-              Pending
-              <div class="status-message">
-                Appointment is pending confirmation.
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Deluxe Manicure</td>
-            <td>2023-08-15</td>
-            <td>2:00 PM</td>
-            <td class="status-pending status-tooltip">
-              Pending
-              <div class="status-message">
-                Appointment is pending confirmation.
-              </div>
-            </td>
-          </tr>
-          <!-- Add more appointment rows here -->
+          {% endfor%}
         </tbody>
       </table>
     </div>
