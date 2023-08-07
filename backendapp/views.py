@@ -139,3 +139,14 @@ def appointment_details(request):
 
         # Return a response indicating successful form submission (you can customize this)
         return redirect('/services')
+
+
+def display_appointments(request):
+    # Retrieve customer data from the database
+    appointments = customers.objects.all()
+
+    context = {
+        'appointments': appointments
+    }
+
+    return render(request, 'admin_dashboard/customer.html', context)

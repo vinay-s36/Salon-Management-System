@@ -139,14 +139,14 @@
           </tr>
         </thead>
         <tbody>
-          <!-- {% for appointment in appointments %} -->
+          {% for appointment in appointments %}
           <tr>
-            <td>{{ forloop.counter }}</td>
+          <td>{{ forloop.counter }}</td>
           <td>{{ appointment.name }}</td>
-          <td>{{ appointment.mobile_number }}</td>
+          <td>{{ appointment.phone }}</td>
           <td>{{ appointment.email }}</td>
           </tr>
-          <!-- {% endfor %} -->
+          {% endfor %}
         </tbody>
       </table>
     </div>
