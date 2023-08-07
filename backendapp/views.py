@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import user_details, admin
+from .models import user_details, admin, user_appointments, customers
 from django.contrib import messages
 
 
@@ -63,6 +63,10 @@ def contacts(request):
     return render(request, 'contacts.html')
 
 
+def customers(request):
+    return render(request, 'admin_dashboard/customer.html')
+
+
 def admin_login(request):
     return render(request, 'login-admin.html')
 
@@ -118,3 +122,20 @@ def adminsignin(request):
             return redirect('/admin-login')
 
     return render(request, 'admin_login.html')
+
+
+def appointment_details(request):
+    if request.method == 'POST':
+        service = request.POST.get('service', '')
+        name = request.POST.get('name', '')
+        phone = request.POST.get('phone', '')
+        date = request.POST.get('date', '')
+        time = request.POST.get('time', '')
+
+        # Create and save the appointment object to the database
+        appointment = user_appointments(
+            service=service, name=name, phone=phone, date=date, time=time)
+        appointment.save()
+
+        # Return a response indicating successful form submission (you can customize this)
+        return redirect('/services')

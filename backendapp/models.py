@@ -8,35 +8,32 @@ class user_details(models.Model):
 
 
 class Service(models.Model):
-    name = models.CharField(max_length=100)
+    service_name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    image = models.ImageField(upload_to='images/products/')
+    # Add any other fields you need for appointment bookings
 
     def __str__(self):
-        return self.name
+        return self.service_name
 
 
-class Appointment(models.Model):
-    STATUS_CHOICES = (
-        ('fixed', 'Fixed'),
-        ('pending', 'Pending'),
-    )
-
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+class user_appointments(models.Model):
+    service = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
     date = models.DateField()
     time = models.TimeField()
-    status = models.CharField(
-        max_length=10, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
-        return f"{self.service} - {self.date} {self.time} - {self.status}"
+        return f"{self.name}'s Appointment for {self.service} on {self.date} at {self.time}"
 
 
-class Appointment(models.Model):
-    appointment_number = models.IntegerField()
+class all_appointment(models.Model):
+    appointment_number = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     mobile_number = models.CharField(max_length=20)
     appointment_date = models.DateField()
     appointment_time = models.TimeField()
-    # Add any other fields as needed
 
     def __str__(self):
         return self.name
@@ -45,3 +42,12 @@ class Appointment(models.Model):
 class admin(models.Model):
     username = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
+
+
+class customers(models.Model):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.name

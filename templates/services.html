@@ -10,6 +10,23 @@
       href="{% static 'favicon/favicon.ico' %}"
       type="image/x-icon"
     />
+    <!-- Close icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
   </head>
   <body>
     <header>
@@ -38,7 +55,7 @@
         <img src="{%static 'images/services/Basic.jpg'%}" alt="Face Wash" />
         <h2>Basic package</h2>
         <p class="price">&#8377;999</p>
-        <button class="add-to-cart" data-service="O3 Facial">
+        <button class="add-to-cart" data-service="Basic package">
           Book appointment
         </button>
       </div>
@@ -46,7 +63,7 @@
         <img src="{%static 'images/services/Deluxe.jpg'%}" alt="Face Wash" />
         <h2>Deluxe package</h2>
         <p class="price">&#8377;1499</p>
-        <button class="add-to-cart" data-service="O3 Facial">
+        <button class="add-to-cart" data-service="Deluxe package">
           Book appointment
         </button>
       </div>
@@ -54,7 +71,7 @@
         <img src="{%static 'images/services/Premium.jpg'%}" alt="Face Wash" />
         <h2>Premium package</h2>
         <p class="price">&#8377;1999</p>
-        <button class="add-to-cart" data-service="O3 Facial">
+        <button class="add-to-cart" data-service="Premium package">
           Book appointment
         </button>
       </div>
@@ -148,19 +165,57 @@
         />
         <h2>Loreal Hair Color(Full)</h2>
         <p class="price">&#8377;1200</p>
-        <button class="add-to-cart" data-service="Loreal Hair Color">
+        <button
+          class="add-to-cart"
+          data-service="Loreal Hair Color"
+          onclick="showBookingForm('Loreal Hair Color(Full)')"
+        >
           Book appointment
         </button>
       </div>
       <div class="product-box">
-        <img src="{%static 'images/services/body-spa.jpg'%}" alt="Face Wash" />
+        <img
+          src="{% static 'images/services/body-spa.jpg' %}"
+          alt="Face Wash"
+        />
         <h2>Body Spa</h2>
         <p class="price">&#8377;1500</p>
-        <button class="add-to-cart" data-service="Body Spa">
+        <button
+          class="add-to-cart"
+          data-service="O3 Facial"
+          onclick="showBookingForm('Body Spa')"
+        >
           Book appointment
         </button>
       </div>
-      <!-- Add more product boxes here -->
+    </div>
+    <div class="popup-overlay" id="bookingFormOverlay">
+      <div class="popup-form" id="bookingForm">
+        <button class="close-button" onclick="closeBookingForm()">
+          <i class="fas fa-times"></i>
+        </button>
+        <form method="POST" action="/appointment-details">
+          {% csrf_token %}
+          <h3>Book Appointment</h3>
+          <label for="serviceName">Service Name:</label>
+          <input
+            name="service"
+            type="text"
+            id="serviceName"
+            required
+            readonly
+          />
+          <label for="name">Name:</label>
+          <input name="name" type="text" id="name" required />
+          <label for="phone">Phone Number:</label>
+          <input name="phone" type="tel" id="phone" required />
+          <label for="date">Appointment Date:</label>
+          <input name="date" type="text" id="datepicker" required readonly />
+          <label for="time">Appointment Time:</label>
+          <input name="time" type="text" id="timepicker" required />
+          <button type="submit">Book</button>
+        </form>
+      </div>
     </div>
     <footer>&copy; Salon-suite. All rights reserved.<br /></footer>
   </body>
@@ -275,163 +330,142 @@
     margin: 5px 0;
   }
 
-  .add-to-cart {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    cursor: pointer;
-  }
-
-  .add-to-cart:hover {
-    background-color: #0056b3;
-  }
-  .popup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* Add the following styles to your CSS file or in a <style> tag in the HTML page */
+  .popup-overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    z-index: 1; /* Place the overlay above other elements */
   }
 
-  .popup-content {
-    background-color: #fff;
+  .popup-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: 400px;
+    z-index: 2;
+  }
+
+  .popup-form h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-size: 24px;
+    color: #333333;
   }
 
-  .close-button {
-    cursor: pointer;
-    float: right;
-    font-size: 20px;
+  .popup-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #191818;
   }
-  input[type="date"],
-  input[type="time"] {
-    width: 70%;
+
+  .popup-form input {
+    width: 90%;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #414040;
+    border-radius: 5px;
     font-size: 16px;
   }
 
-  /* Style for the book appointment button */
-  button {
-    background-color: #4caf50;
-    color: #fff;
+  .popup-form button {
     padding: 10px 20px;
+    background: #007bff;
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 5px;
   }
 
-  button:hover {
-    background-color: #45a049;
+  .popup-form .close-button {
+    position: absolute;
+    top: 1px;
+    right: -180px;
+    font-size: 16px; /* Adjust the icon size */
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #555555; /* Set the icon color (black in this case) */
+    padding: 5px;
   }
-  .confirmation-message {
-    color: #333;
-    font-size: 18px;
-    margin-top: 20px;
+
+  /* Additional styles for a better appearance */
+  .product-box {
+    margin-bottom: 20px;
+  }
+
+  .add-to-cart {
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+
+  .add-to-cart:hover {
+    background-color: #0056b3;
   }
 </style>
 
 <script>
-  document.addEventListener("click", function (event) {
-    if (event.target.matches(".add-to-cart")) {
-      const serviceName = event.target.getAttribute("data-service");
-      showDateTimePopup(serviceName);
-    } else if (event.target.closest(".popup-content") === null) {
-      closePopups();
+  // Add the following script to your JavaScript file or inside a <script> tag in the HTML page
+
+  // Function to show the booking form pop-up and set the service name
+  function showBookingForm(serviceName) {
+    document.getElementById("serviceName").value = serviceName;
+    document.getElementById("bookingFormOverlay").style.display = "block";
+
+    // Initialize date and time pickers
+    $("#datepicker").datepicker({
+      startDate: "0", // Set the minimum date to today
+      autoclose: true,
+      dateFormat: "yy-mm-dd",
+    });
+  }
+
+  // Function to close the booking form pop-up
+  function closeBookingForm() {
+    document.getElementById("bookingFormOverlay").style.display = "none";
+  }
+
+  // Function to submit the form data
+  function submitForm() {
+    const serviceName = document.getElementById("serviceName").value;
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+
+    // Add your custom validation logic for date and time constraints here
+    // For example, to check if the selected date is not yesterday:
+    const selectedDate = new Date(date);
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() - 1); // Subtract 1 day from the current date
+
+    if (selectedDate <= currentDate) {
+      alert("Please select a date after today.");
+      return;
     }
-  });
-
-  function showDateTimePopup(serviceName) {
-    let dateTimePopup = document.createElement("div");
-    dateTimePopup.classList.add("popup");
-
-    let dateTimeContent = document.createElement("div");
-    dateTimeContent.classList.add("popup-content");
-
-    let serviceNameHeading = document.createElement("h2");
-    serviceNameHeading.textContent = serviceName;
-
-    let dateInput = document.createElement("input");
-    dateInput.setAttribute("type", "date");
-    dateInput.setAttribute("id", "dateInput");
-    dateInput.required = true;
-
-    let timeInput = document.createElement("input");
-    timeInput.setAttribute("type", "time");
-    timeInput.setAttribute("id", "timeInput");
-    timeInput.required = true;
-
-    let dateTimeSubmitButton = document.createElement("button");
-    dateTimeSubmitButton.innerText = "Book Appointment";
-    dateTimeSubmitButton.addEventListener("click", () => {
-      const selectedDate = dateInput.value;
-      const selectedTime = timeInput.value;
-      if (isValidAppointment(selectedDate, selectedTime)) {
-        dateTimePopup.style.display = "none";
-        showConfirmationPopup(serviceName, selectedDate, selectedTime);
-      } else {
-        alert("Invalid appointment time. Please select a valid date and time.");
-      }
-    });
-
-    dateTimeContent.appendChild(serviceNameHeading);
-    dateTimeContent.appendChild(dateInput);
-    dateTimeContent.appendChild(timeInput);
-    dateTimeContent.appendChild(dateTimeSubmitButton);
-    dateTimePopup.appendChild(dateTimeContent);
-    document.body.appendChild(dateTimePopup);
-  }
-
-  function closePopups() {
-    const popups = document.querySelectorAll(".popup");
-    popups.forEach((popup) => {
-      popup.remove();
-    });
-  }
-
-  function isValidAppointment(selectedDate, selectedTime) {
-    const today = new Date();
-    const selectedDateTime = new Date(`${selectedDate} ${selectedTime}`);
-    const startTime = new Date(`${selectedDate} 09:00`);
-    const endTime = new Date(`${selectedDate} 21:00`);
-
-    return (
-      selectedDateTime >= today &&
-      selectedDateTime >= startTime &&
-      selectedDateTime <= endTime
-    );
-  }
-
-  function showConfirmationPopup(serviceName, selectedDate, selectedTime) {
-    let confirmationPopup = document.createElement("div");
-    confirmationPopup.classList.add("popup");
-
-    let confirmationContent = document.createElement("div");
-    confirmationContent.classList.add("popup-content");
-
-    let confirmationMessage = document.createElement("p");
-    confirmationMessage.innerText = `Thank you for booking the "${serviceName}" service on ${selectedDate} at ${selectedTime}. Your appointment is confirmed.`;
-
-    confirmationContent.appendChild(confirmationMessage);
-    confirmationPopup.appendChild(confirmationContent);
-
-    document.body.appendChild(confirmationPopup);
+    closeBookingForm();
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("datepicker").value = "";
+    document.getElementById("timepicker").selectedIndex = 0;
+    // Optionally, show a confirmation message or perform other actions after successful submission
+    alert("Appointment booked successfully!");
   }
 </script>

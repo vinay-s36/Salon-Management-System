@@ -128,29 +128,23 @@
       </div>
     </div>
     <div class="table-container">
-      <h2>All Appointments:</h2>
+      <h2>Customers List:</h2>
       <table>
         <thead>
           <tr>
             <th>#</th>
-            <th>Appointment Number</th>
             <th>Name</th>
             <th>Mobile Number</th>
-            <th>Appointment Date</th>
-            <th>Appointment Time</th>
-            <th>Action</th>
+            <th>Email</th>
           </tr>
         </thead>
         <tbody>
           <!-- {% for appointment in appointments %} -->
           <tr>
             <td>{{ forloop.counter }}</td>
-          <td>{{ appointment.appointment_number }}</td>
           <td>{{ appointment.name }}</td>
           <td>{{ appointment.mobile_number }}</td>
-          <td>{{ appointment.appointment_date }}</td>
-          <td>{{ appointment.appointment_time }}</td>
-          <a><td>View</td></a>
+          <td>{{ appointment.email }}</td>
           </tr>
           <!-- {% endfor %} -->
         </tbody>
