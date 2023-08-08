@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hair Stylist Booking</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Stylist listing */
+      .stylist {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+      }
+
+      .stylist img {
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+
+      .stylist-info {
+        flex-grow: 1;
+      }
+
+      .button-container {
+        text-align: right;
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      /* Booking modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 10%;
+        left: 25%;
+        width: 50%;
+        height: 0%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #555;
+        cursor: pointer;
+      }
+
+      /* Form styling */
+      label {
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      select {
+        width: 50%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+      }
+
+      button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      select {
+        width: 60%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hair Stylist Booking</h1>
+      <div class="stylist">
+        <img src="stylist1.jpg" alt="Stylist 1" />
+        <div class="stylist-info">
+          <h2>Stylist 1</h2>
+          <p>Rating: 4.8</p>
+          <p>Profile: Experienced stylist specializing in modern hairstyles.</p>
+        </div>
+        <div class="button-container">
+          <button class="book-button" data-stylist="Stylist 1">Book Now</button>
+        </div>
+      </div>
+      <!-- Repeat the above structure for each stylist -->
+      <!-- Stylist 2 -->
+      <div class="stylist">
+        <img src="stylist1.jpg" alt="Stylist 2" />
+        <div class="stylist-info">
+          <h2>Stylist 2</h2>
+          <p>Rating: 4.8</p>
+          <p>Profile: Experienced stylist specializing in modern hairstyles.</p>
+        </div>
+        <div class="button-container">
+          <button class="book-button" data-stylist="Stylist 1">Book Now</button>
+        </div>
+      </div>
+      <!-- Stylist 3 -->
+      <div class="stylist">
+        <img src="stylist1.jpg" alt="Stylist 3" />
+        <div class="stylist-info">
+          <h2>Stylist 3</h2>
+          <p>Rating: 4.8</p>
+          <p>Profile: Experienced stylist specializing in modern hairstyles.</p>
+        </div>
+        <div class="button-container">
+          <button class="book-button" data-stylist="Stylist 1">Book Now</button>
+        </div>
+      </div>
+      <!-- Stylist 4 -->
+      <div class="stylist">
+        <img src="stylist1.jpg" alt="Stylist 4" />
+        <div class="stylist-info">
+          <h2>Stylist 4</h2>
+          <p>Rating: 4.8</p>
+          <p>Profile: Experienced stylist specializing in modern hairstyles.</p>
+        </div>
+        <div class="button-container">
+          <button class="book-button" data-stylist="Stylist 1">Book Now</button>
+        </div>
+      </div>
+      <!-- Stylist 5 -->
+      <div class="stylist">
+        <img src="stylist1.jpg" alt="Stylist 5" />
+        <div class="stylist-info">
+          <h2>Stylist 5</h2>
+          <p>Rating: 4.8</p>
+          <p>Profile: Experienced stylist specializing in modern hairstyles.</p>
+        </div>
+        <div class="button-container">
+          <button class="book-button" data-stylist="Stylist 1">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="booking-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Book a Slot with <span id="selected-stylist"></span></h2>
+        <form id="booking-form">
+          <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required />
+          </div>
+          <div>
+            <label for="time">Time:</label>
+            <select id="time" name="time" required>
+              <option value="" disabled selected>Select a time</option>
+              <option value="09:00">09:00 AM - 10:00 AM</option>
+              <option value="10:00">10:00 AM - 11:00 AM</option>
+              <option value="11:00">11:00 AM - 12:00 PM</option>
+              <option value="12:00" disabled>Lunch Break</option>
+              <option value="13:00">01:00 PM - 02:00 PM</option>
+              <option value="14:00">02:00 PM - 03:00 PM</option>
+              <!-- Add more time slots as needed -->
+            </select>
+          </div>
+          <button type="submit">Book Now</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const bookButtons = document.querySelectorAll(".book-button");
+      const modal = document.getElementById("booking-modal");
+      const closeModal = document.querySelector(".close");
+      const selectedStylist = document.getElementById("selected-stylist");
+
+      bookButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const stylistName = button.getAttribute("data-stylist");
+          selectedStylist.textContent = stylistName;
+          modal.style.display = "block";
+        });
+      });
+
+      closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+
+      document
+        .getElementById("booking-form")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+          const name = document.getElementById("name").value;
+          const date = document.getElementById("date").value;
+          const time = document.getElementById("time").value;
+          const stylist = selectedStylist.textContent;
+
+          const selectedDate = new Date(date);
+          const dayOfWeek = selectedDate.getDay(); // 0 (Sunday) to 6 (Saturday)
+
+          if (dayOfWeek === 1) {
+            alert("Sorry, booking is not available on Mondays.");
+          } else if (time === "12:00") {
+            alert("Sorry, lunch break is not available for booking.");
+          } else {
+            alert(
+              `Booking confirmed!\nName: ${name}\nStylist: ${stylist}\nDate: ${date}\nTime: ${time}`
+            );
+            modal.style.display = "none";
+          }
+        });
+      window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

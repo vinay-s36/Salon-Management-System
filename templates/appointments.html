@@ -40,13 +40,13 @@
           </tr>
         </thead>
         <tbody>
-          {% for appointment in appointments%}
+          {% for data in user_appointment_data %}
           <tr>
             <td>{{ forloop.counter }}</td>
-            <td>{{ appointment.appointment_number}}</td>
-            <td>{{ appointment.service }}</td>
-            <td>{{ appointment.date }}</td>
-            <td>{{ appointment.time }}</td>
+            <td>{{ data.appointment_number}}</td>
+            <td>{{ data.service }}</td>
+            <td>{{ data.date }}</td>
+            <td>{{ data.time }}</td>
             <td class="status-fixed status-tooltip">
               Fixed
               <div class="status-message">Appointment is confirmed.</div>

@@ -128,11 +128,11 @@
       <div class="grid-container">
         <div class="grid-item">
           <h2>Total Customers</h2>
-          <p>0</p>
+          <p>{{ customer_count }}</p>
         </div>
         <div class="grid-item">
           <h2>Total Appointments</h2>
-          <p>0</p>
+          <p>{{ appointment_count }}</p>
         </div>
         <div class="grid-item">
           <h2>Accepted Appointments</h2>
@@ -244,6 +244,10 @@
   /* Style for the dashboard container when sidebar collapsed */
   .dashboard-container.collapsed {
     margin-left: 90px;
+  }
+
+  .dashboard-container p{
+    font-size: large;
   }
 
   h1 {

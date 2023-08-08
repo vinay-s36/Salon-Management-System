@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import user_details, admin, user_appointments, customers
+from .models import user_details, admin, user_appointments
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import random
 
@@ -8,6 +9,7 @@ def landing(request):
     return render(request, 'landing-page.html')
 
 
+@login_required
 def home(request):
     return render(request, 'home.html')
 
@@ -25,7 +27,9 @@ def login(request):
 
 
 def dashboard(request):
-    return render(request, 'admin_dashboard.html')
+    customer_count = user_details.objects.count()
+    appointment_count = user_appointments.objects.count()
+    return render(request, 'admin_dashboard.html', {'appointment_count': appointment_count, 'customer_count': customer_count})
 
 
 def new(request):
@@ -54,6 +58,10 @@ def contacts(request):
 
 def admin_login(request):
     return render(request, 'login-admin.html')
+
+
+def spcl_service(request):
+    return render(request, 'special_service.html')
 
 
 def logincon(request):
@@ -137,17 +145,6 @@ def appointment_details(request):
         return redirect('/services')
 
 
-def display_appointments(request):
-    # Retrieve customer data from the database
-    appointments = customers.objects.all()
-
-    context = {
-        'appointments': appointments
-    }
-
-    return render(request, 'admin_dashboard/customer.html', context)
-
-
 def display_all(request):
     appointments = user_appointments.objects.all()
     context = {
@@ -158,13 +155,9 @@ def display_all(request):
 
 
 def appointments(request):
-    appointments = user_appointments.objects.all().values(
-        'appointment_number', 'service', 'date', 'time'
-    )
-    context = {
-        'appointments': appointments
-    }
-    return render(request, 'appointments.html', context)
+    user_appointment_data = user_appointments.objects.filter(
+        name=request.user.username)
+    return render(request, 'appointments.html', {'user_appointment_data': user_appointment_data})
 
 
 def search_appointment(request):
@@ -180,7 +173,23 @@ def search_appointment1(request):
         try:
             appointment = user_appointments.objects.get(
                 appointment_number=appointment_number)
+            print(appointment)
         except user_appointments.DoesNotExist:
             no_records_found = True
 
     return render(request, 'admin_dashboard/search_appointment.html', {'appointment': appointment, 'no_records_found': no_records_found})
+
+
+def customer_details(request):
+    appointment_data = user_appointments.objects.all()
+    user_data = user_details.objects.all()
+    combined_data = []
+    for appointment in appointment_data:
+        for user in user_data:
+            if appointment.name.lower() == user.username.lower():
+                combined_data.append({
+                    'name': appointment.name.upper(),
+                    'phone': appointment.phone,
+                    'email': user.emailid,
+                })
+    return render(request, 'admin_dashboard/customer.html', {'combined_data': combined_data})
