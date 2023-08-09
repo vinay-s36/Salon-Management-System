@@ -178,11 +178,13 @@ def search_appointment1(request):
         try:
             appointment = user_appointments.objects.get(
                 appointment_number=appointment_number)
-            print(appointment)
         except user_appointments.DoesNotExist:
             no_records_found = True
-
-    return render(request, 'admin_dashboard/search_appointment.html', {'appointment': appointment, 'no_records_found': no_records_found})
+    print(appointment)
+    return render(request, 'admin_dashboard/search_appointment.html', {
+        'appointment': appointment,
+        'no_records_found': no_records_found
+    })
 
 
 def customer_details(request):
