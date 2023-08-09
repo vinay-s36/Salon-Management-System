@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import user_details, admin, user_appointments
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Count
 import random
 
 
@@ -9,7 +10,6 @@ def landing(request):
     return render(request, 'landing-page.html')
 
 
-@login_required
 def home(request):
     return render(request, 'home.html')
 
@@ -27,9 +27,14 @@ def login(request):
 
 
 def dashboard(request):
-    customer_count = user_details.objects.count()
+    customer_count = user_appointments.objects.values(
+        'phone').annotate(count=Count('phone')).count()
     appointment_count = user_appointments.objects.count()
-    return render(request, 'admin_dashboard.html', {'appointment_count': appointment_count, 'customer_count': customer_count})
+    context = {
+        'customer_count': customer_count,
+        'appointment_count': appointment_count
+    }
+    return render(request, 'admin_dashboard.html', context)
 
 
 def new(request):
@@ -146,7 +151,7 @@ def appointment_details(request):
 
 
 def display_all(request):
-    appointments = user_appointments.objects.all()
+    appointments = user_appointments.objects.all().order_by('date', 'time')
     context = {
         'appointments': appointments
     }
@@ -181,15 +186,22 @@ def search_appointment1(request):
 
 
 def customer_details(request):
+    combined_data = {}
+    unique_emails = set()
+
     appointment_data = user_appointments.objects.all()
-    user_data = user_details.objects.all()
-    combined_data = []
+
     for appointment in appointment_data:
-        for user in user_data:
-            if appointment.name.lower() == user.username.lower():
-                combined_data.append({
+        email_lower = appointment.name.lower()
+        if email_lower not in unique_emails:
+            unique_emails.add(email_lower)
+            user = user_details.objects.filter(
+                username__iexact=appointment.name).first()
+            if user:
+                combined_data[appointment.name.lower()] = {
                     'name': appointment.name.upper(),
                     'phone': appointment.phone,
                     'email': user.emailid,
-                })
-    return render(request, 'admin_dashboard/customer.html', {'combined_data': combined_data})
+                }
+
+    return render(request, 'admin_dashboard/customer.html', {'combined_data': combined_data.values()})
