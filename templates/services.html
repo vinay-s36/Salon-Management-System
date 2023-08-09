@@ -518,7 +518,9 @@
 
       // Show an alert with a delay
       setTimeout(function () {
-        alert("Appointment booked successfully!");
+        alert(
+          "Locked in your slot! Complete payment to finalize your appointment!"
+        );
         // Submit the form programmatically after the alert is shown
         document.getElementById("appointment-form").submit();
       }, 500);

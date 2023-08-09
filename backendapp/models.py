@@ -24,11 +24,7 @@ class admin(models.Model):
     password = models.CharField(max_length=200)
 
 
-# class Service(models.Model):
-#     service_name = models.CharField(max_length=100)
-#     price = models.DecimalField(max_digits=8, decimal_places=2)
-#     image = models.ImageField(upload_to='images/products/')
-#     # Add any other fields you need for appointment bookings
-
-#     def __str__(self):
-#         return self.service_name
+class customers(models.Model):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
