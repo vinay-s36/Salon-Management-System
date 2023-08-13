@@ -2,14 +2,18 @@ from django.db import models
 
 
 class user_details(models.Model):
-    username = models.CharField(max_length=20)
+    username = models.CharField(max_length=20, unique=True)
     password = models.CharField(max_length=20)
-    emailid = models.EmailField()
+    emailid = models.EmailField(unique=True)
+
+    def __str__(self):
+        return self.username
 
 
 class user_appointments(models.Model):
     appointment_number = models.IntegerField(primary_key=True)
     service = models.CharField(max_length=100)
+    price = models.IntegerField()
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
     date = models.DateField()
