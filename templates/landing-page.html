@@ -46,43 +46,46 @@
         <div class="service-item">
           <img src="{%static 'images/landing-page/10.jpg' %}"alt="Service 1" />
           <h3>Hair Styling</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Transform your locks with our expert hair styling services for a stunning and refreshed look.</p>
         </div>
         <div class="service-item">
           <img src="{%static 'images/landing-page/12.jpg' %}" alt="Service 2" />
           <h3>Facials</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Revitalize your skin with our rejuvenating facial treatments for a radiant and refreshed complexion.</p>
         </div>
         <div class="service-item">
           <img src="{%static 'images/landing-page/13.jpg' %}" alt="Service 3" />
           <h3>Manicure & Pedicure</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Give your hands and feet a treat with our manicure and pedicure services, leaving your nails groomed, polished, and looking fabulous.</p>
         </div>
-        <a href="/login" style="margin-left: 55%;color: rgb(225, 55, 112);font-size: large;">view all services</a>
       </div>
+      <a href="/login" style="margin-left: 90%;color: rgb(225, 55, 112);font-size: large;">view all services</a>
     </section>
 
     <section class="pricing">
-      <div class="container">
-        <h2>Our Pricing</h2>
+      <h2 style="margin-left: 30px;">Our Pricing</h2><br>
+      <div class="container1">
         <div class="price-item">
-          <h3>Basic Package</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <span class="price"><p>&#8377;999</p></span>
+          <img src="{% static 'images/landing-page/basic.jpg' %}" class="package-image"><br>
+          <h3>Basic Package</h3><br>
+          <p>Experience beauty simplified with our basic package, offering essential treatments that leave you looking and feeling great.</p>
+          <br><span class="price"><p>&#8377;999</p></span>
         </div>
         <div class="price-item">
-          <h3>Deluxe Package</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <span class="price"><p>&#8377;1499</p></span>
+          <img src="{% static 'images/landing-page/deluxe.jpg' %}" class="package-image"><br>
+          <h3>Deluxe Package</h3><br>
+          <p>Indulge in luxury with our deluxe package, a premium selection of treatments that will pamper you from head to toe, leaving you feeling utterly refreshed and rejuvenated.</p>
+          <br><span class="price"><p>&#8377;1499</p></span>
         </div>
         <div class="price-item">
-          <h3>Premium Package</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <span class="price"><p>&#8377;1999</p>
+          <img src="{% static 'images/landing-page/premium.jpg' %}" class="package-image"><br>
+          <h3>Premium Package</h3><br>
+          <p>Elevate your pampering experience with our premium package, curated to provide you with top-tier treatments, relaxation, and a complete rejuvenation journey, leaving you glowing inside and out.</p>
+          <br><span class="price"><p>&#8377;1999</p>
           </span>
         </div>
-        <a href="/login" style="margin-left: 55%;color: rgb(225, 55, 112);font-size:large;">more</a>
-      </div>
+      </div><br>
+      <a href="/login" style="margin-left: 95%;color: rgb(225, 55, 112);font-size:large;">&more</a>      
     </section>
     <button id="scrollToTopBtn" onclick="scrollToTop()">&#8593;</button>
     </button>
@@ -100,7 +103,6 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
   }
   body {
     font-family: Arial, sans-serif;
@@ -125,6 +127,11 @@
     margin: 0 auto;
     padding: 0 20px;
   }
+  .container1 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
   
   .logo img{
     max-height: 50px;
@@ -191,28 +198,45 @@
   .service-item p {
     font-size: 16px;
   }
-  
+  .package-image {
+      max-width: 60%;
+      height: auto;
+      align-items: center;
+    }
   /* Pricing Section Styles */
   .pricing {
     padding: 80px 0;
   }
   
   .price-item {
-    text-align: center;
-    margin-bottom: 40px;
-  }
+    margin-left: 50px;
+    width: 350px;
+      background-color: #f7f7f7;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex; /* Use flexbox */
+      flex-direction: column; /* Align content vertically */
+      justify-content: center; /* Center content vertically */
+      align-items: center;
+    }
   
-  .price-item h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
+    .price-item h3 {
+      font-size: 20px;
+      margin-top: 0;
+    }
+  
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+    }
   
   .price-item p {
     font-size: 16px;
   }
   
   .price p{
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
   }
   
