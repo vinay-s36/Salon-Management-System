@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import user_details, admin, user_appointments
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.db.models import Count
+from django.db.models import Count, Sum
+from datetime import date, timedelta
 import random
 
 
@@ -30,9 +31,32 @@ def dashboard(request):
     customer_count = user_appointments.objects.values(
         'phone').annotate(count=Count('phone')).count()
     appointment_count = user_appointments.objects.count()
+    total_sales = user_appointments.objects.aggregate(total=Sum('price'))[
+        'total'] or 0
+
+    today = date.today()
+    todays_sales = user_appointments.objects.filter(
+        date=today).aggregate(total=Sum('price'))['total'] or 0
+
+    yesterday = date.today() - timedelta(days=1)
+    yesterdays_sales = user_appointments.objects.filter(
+        date=yesterday).aggregate(total=Sum('price'))['total'] or 0
+
+    start_date = today - timedelta(days=6)
+    last_seven_days_sales = 0
+    for day in range(7):
+        sales_date = start_date + timedelta(days=day)
+        daily_sales = user_appointments.objects.filter(
+            date=sales_date).aggregate(total=Sum('price'))['total'] or 0
+        last_seven_days_sales += daily_sales
+
     context = {
         'customer_count': customer_count,
-        'appointment_count': appointment_count
+        'appointment_count': appointment_count,
+        'total_sales': total_sales,
+        'todays_sales': todays_sales,
+        'yesterdays_sales': yesterdays_sales,
+        'last_seven_days_sales': last_seven_days_sales
     }
     return render(request, 'admin_dashboard.html', context)
 
@@ -129,6 +153,7 @@ def generate_appointment_number():
 def appointment_details(request):
     if request.method == 'POST':
         service = request.POST.get('service', '')
+        price = request.POST.get('price', '')
         name = request.POST.get('name', '')
         phone = request.POST.get('phone', '')
         date = request.POST.get('date', '')
@@ -143,7 +168,7 @@ def appointment_details(request):
 
         # Create and save the appointment object to the database
         appointment = user_appointments(
-            service=service, name=name, phone=phone, date=date, time=time, appointment_number=appointment_number)
+            service=service, name=name, phone=phone, date=date, time=time, appointment_number=appointment_number, price=price)
         appointment.save()
 
         # Return a response indicating successful form submission (you can customize this)
