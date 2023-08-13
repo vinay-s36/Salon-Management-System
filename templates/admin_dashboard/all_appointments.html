@@ -155,7 +155,8 @@
           {% endfor %}
         </tbody>
       </table>
-    </div>
+    </div><br>
+    <button id="printButton" onclick="printTable()">Print</button>
     <footer>&copy; Salon-suite. All rights reserved.<br /></footer>
   </body>
 </html>
@@ -457,6 +458,23 @@ height: auto;
     text-align: center;
     color: black;
   }
+
+  #printButton {
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    margin-left: 95%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #printButton:hover {
+    background-color: #0056b3;
+  }
+
 </style>
 
 <script>
@@ -544,4 +562,26 @@ window.onclick = (event) => {
   }
 };
 
+// function printTable() {
+//     var tableContainer = document.querySelector('.table-container');
+//     var printWindow = window.open('', '_blank');
+//     printWindow.document.write('<html><head><title>Print Appointments</title></head><body>');
+//       printWindow.document.write('<style>#printButton { display: none; }</style>');
+//     printWindow.document.write(tableContainer.innerHTML);
+//     printWindow.document.write('</body></html>');
+//     printWindow.document.close();
+//     printWindow.print();
+//   }
+
+function printTable() {
+    var tableContainer = document.querySelector('.table-container');
+    var printButton = tableContainer.querySelector('#printButton');
+    if (printButton) {
+      printButton.style.display = 'none';
+    }
+    
+    document.body.innerHTML = tableContainer.innerHTML;
+    window.print();
+    location.reload(); // Restore the original content
+  }
 </script>
