@@ -58,7 +58,7 @@
         <button
           class="add-to-cart"
           data-service="Basic package"
-          onclick="showBookingForm('Basic Package')"
+          onclick="showBookingForm('Basic Package',999)"
         >
           Book appointment
         </button>
@@ -70,7 +70,7 @@
         <button
           class="add-to-cart"
           data-service="Deluxe package"
-          onclick="showBookingForm('Deluxe Package')"
+          onclick="showBookingForm('Deluxe Package',1499)"
         >
           Book appointment
         </button>
@@ -82,7 +82,7 @@
         <button
           class="add-to-cart"
           data-service="Premium package"
-          onclick="showBookingForm('Premium Package')"
+          onclick="showBookingForm('Premium Package',1999)"
         >
           Book appointment
         </button>
@@ -94,7 +94,7 @@
         <button
           class="add-to-cart"
           data-service="O3 Facial"
-          onclick="showBookingForm('O3 Facial')"
+          onclick="showBookingForm('O3 Facial',1200)"
         >
           Book appointment
         </button>
@@ -106,7 +106,7 @@
         <button
           class="add-to-cart"
           data-service="Fruit Facial"
-          onclick="showBookingForm('Fruit Facial')"
+          onclick="showBookingForm('Fruit Facial',500)"
         >
           Book appointment
         </button>
@@ -118,7 +118,7 @@
         <button
           class="add-to-cart"
           data-service="Charcoal Facial"
-          onclick="showBookingForm('Charcoal Facial')"
+          onclick="showBookingForm('Charcoal Facial',1000)"
         >
           Book appointment
         </button>
@@ -130,7 +130,7 @@
         <button
           class="add-to-cart"
           data-service="Deluxe Manicure"
-          onclick="showBookingForm('Deluxe Manicure')"
+          onclick="showBookingForm('Deluxe Manicure',500)"
         >
           Book appointment
         </button>
@@ -142,7 +142,7 @@
         <button
           class="add-to-cart"
           data-service="Deluxe Pedicure"
-          onclick="showBookingForm('Deluxe Pedicure')"
+          onclick="showBookingForm('Deluxe Pedicure',600)"
         >
           Book appointment
         </button>
@@ -154,7 +154,7 @@
         <button
           class="add-to-cart"
           data-service="Normal Manicure"
-          onclick="showBookingForm('Normal Manicure')"
+          onclick="showBookingForm('Normal Manicure',300)"
         >
           Book appointment
         </button>
@@ -166,7 +166,7 @@
         <button
           class="add-to-cart"
           data-service="Normal Pedicure"
-          onclick="showBookingForm('Normal Pedicure')"
+          onclick="showBookingForm('Normal Pedicure',400)"
         >
           Book appointment
         </button>
@@ -178,7 +178,7 @@
         <button
           class="add-to-cart"
           data-service="U-Shape Hair Cut"
-          onclick="showBookingForm('U-Shape Hair Cut')"
+          onclick="showBookingForm('U-Shape Hair Cut',250)"
         >
           Book appointment
         </button>
@@ -190,7 +190,7 @@
         <button
           class="add-to-cart"
           data-service="Layer Haircut"
-          onclick="showBookingForm('Layer Haircut')"
+          onclick="showBookingForm('Layer Haircut',550)"
         >
           Book appointment
         </button>
@@ -205,7 +205,7 @@
         <button
           class="add-to-cart"
           data-service="Rebonding"
-          onclick="showBookingForm('Rebonding')"
+          onclick="showBookingForm('Rebonding',3999)"
         >
           Book appointment
         </button>
@@ -220,7 +220,7 @@
         <button
           class="add-to-cart"
           data-service="Loreal Hair Color"
-          onclick="showBookingForm('Loreal Hair Color(Full)')"
+          onclick="showBookingForm('Loreal Hair Color(Full)',1200)"
         >
           Book appointment
         </button>
@@ -235,7 +235,7 @@
         <button
           class="add-to-cart"
           data-service="O3 Facial"
-          onclick="showBookingForm('Body Spa')"
+          onclick="showBookingForm('Body Spa',1500)"
         >
           Book appointment
         </button>
@@ -257,6 +257,8 @@
             required
             readonly
           />
+          <label for="price">Price:</label>
+          <input name="price" type="number" id="price" required readonly />
           <label for="name">Name:</label>
           <input name="name" type="text" id="name" required />
           <label for="phone">Phone Number:</label>
@@ -481,8 +483,9 @@
 </style>
 
 <script>
-  function showBookingForm(serviceName) {
+  function showBookingForm(serviceName, price) {
     document.getElementById("serviceName").value = serviceName;
+    document.getElementById("price").value = price;
     document.getElementById("bookingFormOverlay").style.display = "block";
 
     // Initialize date and time pickers
