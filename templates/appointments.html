@@ -9,6 +9,7 @@
       href="{% static 'favicon/favicon.ico' %}"
       type="image/x-icon"
     />
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
   </head>
   <body>
     <header>
@@ -48,14 +49,40 @@
             <td>{{ data.date }}</td>
             <td>{{ data.time }}</td>
             <td class="status-fixed status-tooltip">
-              Fixed
-              <div class="status-message">Appointment is confirmed.</div>
+              <button
+                id="showQRButton"
+                style="cursor: pointer"
+                onclick="location.href='/qr-code'"
+              >
+                Payment
+              </button>
+              <!-- <div class="status-message">Appointment is confirmed.</div> -->
             </td>
           </tr>
           {% endfor%}
         </tbody>
       </table>
     </div>
+    <!-- <button id="showQRButton">Show QR Code</button> -->
+
+    <!-- Hidden container for QR code pop-up -->
+    <!-- <div id="qrPopup" class="popup">
+      <div class="popup-content">
+        <span class="close-button" id="closeButton">&times;</span>
+        <h3>Scan the QR code for completing payment</h3>
+        <div id="qr-code-container"></div>
+      </div>
+    </div> -->
+    {% for service in services %}
+    <div class="qr-code-container" style="margin-left: 25%">
+      <h2>{{ service.name }}</h2>
+      <div
+        class="qr-code"
+        data-service="{{ service.name }}"
+        data-price="{{ service.price }}"
+      ></div>
+    </div>
+    {% endfor %}
     <footer>&copy; Salon-suite. All rights reserved.<br /></footer>
   </body>
 </html>
@@ -107,7 +134,7 @@
   }
   footer {
     font-size: large;
-    position: fixed;
+    /* position: fixed; */
     left: 0;
     bottom: 0;
     width: 100%;
@@ -191,4 +218,94 @@
     visibility: visible;
     opacity: 1;
   }
+
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .popup-content {
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
 </style>
+
+<script>
+  // const serviceName = localStorage.getItem("selectedService");
+  // const price = parseInt(localStorage.getItem("selectedPrice"));
+
+  // function generateQRCode(serviceName, price) {
+  //   const gpayUri = `upi://pay?pa=vinayshankar0369@okaxis&pn=VINAY%20S&am=${price}&cu=INR&aid=uGICAgMDom7WTUQ`;
+
+  //   const qrCodeContainer = document.getElementById("qr-code-container");
+  //   qrCodeContainer.innerHTML = ""; // Clear previous content
+
+  //   const qr = new QRCode(qrCodeContainer, {
+  //     text: gpayUri,
+  //     width: 200,
+  //     height: 200,
+  //   });
+  // }
+
+  // // Button click event listener
+  // document
+  //   .getElementById("showQRButton")
+  //   .addEventListener("click", function () {
+  //     const qrPopup = document.getElementById("qrPopup");
+  //     qrPopup.style.display = "block";
+
+  //     // Call the generateQRCode function with retrieved data
+  //     generateQRCode(serviceName, price);
+  //   });
+
+  // // Close button event listener
+  // document.getElementById("closeButton").addEventListener("click", function () {
+  //   const qrPopup = document.getElementById("qrPopup");
+  //   qrPopup.style.display = "none";
+  // });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const qrContainers = document.querySelectorAll(".qr-code-container");
+
+    qrContainers.forEach(function (container) {
+      const serviceName = container
+        .querySelector(".qr-code")
+        .getAttribute("data-service");
+      const price = parseFloat(
+        container.querySelector(".qr-code").getAttribute("data-price")
+      );
+
+      generateQRCode(container.querySelector(".qr-code"), serviceName, price);
+    });
+  });
+
+  function generateQRCode(qrContainer, serviceName, price) {
+    const gpayUri = `upi://pay?pa=vinayshankar0369@okaxis&pn=VINAY%20S&am=${price}&cu=INR&aid=uGICAgMDom7WTUQ`;
+
+    const qr = new QRCode(qrContainer, {
+      text: gpayUri,
+      width: 200,
+      height: 200,
+    });
+  }
+</script>

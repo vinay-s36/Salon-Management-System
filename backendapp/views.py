@@ -172,7 +172,7 @@ def appointment_details(request):
         appointment.save()
 
         # Return a response indicating successful form submission (you can customize this)
-        return redirect('/services')
+        return redirect('/appointments')
 
 
 def display_all(request):
@@ -185,8 +185,7 @@ def display_all(request):
 
 
 def appointments(request):
-    user_appointment_data = user_appointments.objects.filter(
-        name=request.user.username)
+    user_appointment_data = user_appointments.objects.all()
     return render(request, 'appointments.html', {'user_appointment_data': user_appointment_data})
 
 
@@ -232,3 +231,9 @@ def customer_details(request):
                 }
 
     return render(request, 'admin_dashboard/customer.html', {'combined_data': combined_data.values()})
+
+
+def qrcode(request):
+    # Retrieve all services from the database
+    services = user_appointments.objects.all()
+    return render(request, 'appointments.html', {'services': services})

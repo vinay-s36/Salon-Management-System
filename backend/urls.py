@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from backendapp.views import contacts, about, services, appointments, home, login, landing, dashboard, admin_login, signup, display_all, logincon, adminsignin, new, rejected, accepted, search_appointment, search_invoice, invoice, appointment_details, search_appointment1, spcl_service, customer_details
+from backendapp.views import contacts, about, services, appointments, home, login, landing, dashboard, admin_login, signup, display_all, logincon, adminsignin, new, rejected, accepted, search_appointment, search_invoice, invoice, appointment_details, search_appointment1, spcl_service, customer_details, qrcode
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +27,7 @@ urlpatterns = [
     path('signin', logincon),
     path('services', services),
     path('about-us', about),
+    path('qr-code', qrcode),
     path('appointments', appointments),
     path('appointment-details', appointment_details),
     path('home', home),
