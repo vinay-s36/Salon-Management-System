@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for data in user_appointment_data %}
+          <!-- {% for data in user_appointment_data %}
           <tr>
             <td>{{ forloop.counter }}</td>
             <td>{{ data.appointment_number}}</td>
@@ -56,10 +56,45 @@
               >
                 Payment
               </button>
-              <!-- <div class="status-message">Appointment is confirmed.</div> -->
+              <!-- <div class="status-message">Appointment is confirmed.</div> 
             </td>
           </tr>
-          {% endfor%}
+          {% endfor%}-->
+          {% for data in user_appointment_data %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ data.appointment_number }}</td>
+            <td>{{ data.service }}</td>
+            <td>{{ data.date }}</td>
+            <td>{{ data.time }}</td>
+            <td class="status-fixed status-tooltip" style="position: relative">
+              <button
+                class="payment-button"
+                style="cursor: pointer"
+                data-appointment-number="{{ data.appointment_number }}"
+              >
+                Payment
+              </button>
+              <div
+                class="qr-code-container"
+                style="
+                  display: none;
+                  position: relative;
+                  left: 20%;
+                  text-align: center;
+                "
+              >
+                <br />
+                <div
+                  class="qr-code"
+                  data-appointment-number="{{ data.appointment_number }}"
+                  data-service="{{ data.service }}"
+                  data-price="{{ data.price }}"
+                ></div>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
@@ -73,16 +108,7 @@
         <div id="qr-code-container"></div>
       </div>
     </div> -->
-    {% for service in services %}
-    <div class="qr-code-container" style="margin-left: 25%">
-      <h2>{{ service.name }}</h2>
-      <div
-        class="qr-code"
-        data-service="{{ service.name }}"
-        data-price="{{ service.price }}"
-      ></div>
-    </div>
-    {% endfor %}
+
     <footer>&copy; Salon-suite. All rights reserved.<br /></footer>
   </body>
 </html>
@@ -134,9 +160,10 @@
   }
   footer {
     font-size: large;
+    position: relative;
     /* position: fixed; */
     left: 0;
-    bottom: 0;
+    bottom: -33%;
     width: 100%;
     padding: 20px;
     text-align: center;
@@ -283,29 +310,38 @@
   //   const qrPopup = document.getElementById("qrPopup");
   //   qrPopup.style.display = "none";
   // });
-
   document.addEventListener("DOMContentLoaded", function () {
-    const qrContainers = document.querySelectorAll(".qr-code-container");
+    const paymentButtons = document.querySelectorAll(".payment-button");
 
-    qrContainers.forEach(function (container) {
-      const serviceName = container
-        .querySelector(".qr-code")
-        .getAttribute("data-service");
-      const price = parseFloat(
-        container.querySelector(".qr-code").getAttribute("data-price")
-      );
+    paymentButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        const appointmentNumber = button.getAttribute(
+          "data-appointment-number"
+        );
+        const qrContainer = button.nextElementSibling;
+        const qrCode = qrContainer.querySelector(".qr-code");
 
-      generateQRCode(container.querySelector(".qr-code"), serviceName, price);
+        if (qrContainer.style.display === "none") {
+          qrContainer.style.display = "block";
+          generateQRCode(qrCode);
+        } else {
+          qrContainer.style.display = "none";
+          qrCode.innerHTML = ""; // Clear the QR code
+        }
+      });
     });
   });
 
-  function generateQRCode(qrContainer, serviceName, price) {
+  function generateQRCode(qrContainer) {
+    const serviceName = qrContainer.getAttribute("data-service");
+    const price = parseFloat(qrContainer.getAttribute("data-price"));
+
     const gpayUri = `upi://pay?pa=vinayshankar0369@okaxis&pn=VINAY%20S&am=${price}&cu=INR&aid=uGICAgMDom7WTUQ`;
 
     const qr = new QRCode(qrContainer, {
       text: gpayUri,
-      width: 200,
-      height: 200,
+      width: 180,
+      height: 180,
     });
   }
 </script>

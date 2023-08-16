@@ -15,7 +15,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css"
@@ -273,7 +276,18 @@
             readonly
           />
           <label for="time">Appointment Time:</label>
-          <input name="time" type="text" id="timepicker" required />
+          <div>
+            <select id="time" name="time" required>
+              <option value="" disabled selected>Select a time</option>
+              <option value="09:00">09:00 AM - 10:00 AM</option>
+              <option value="10:00">10:00 AM - 11:00 AM</option>
+              <option value="11:00">11:00 AM - 12:00 PM</option>
+              <option value="12:00" disabled>Lunch Break</option>
+              <option value="13:00">01:00 PM - 02:00 PM</option>
+              <option value="14:00">02:00 PM - 03:00 PM</option>
+            </select>
+          </div>
+          <br />
           <button type="submit">Book</button>
         </form>
       </div>
@@ -405,7 +419,7 @@
 
   .popup-form {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 350px;
@@ -482,6 +496,9 @@
   }
 </style>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
 <script>
   function showBookingForm(serviceName, price) {
     document.getElementById("serviceName").value = serviceName;
@@ -491,8 +508,22 @@
     // Initialize date and time pickers
     $("#datepicker").datepicker({
       startDate: "0", // Set the minimum date to today
+      beforeShowDay: function (date) {
+        // Disable Mondays
+        var day = date.getDay(); // 0 = Sunday, 1 = Monday, ...
+        return [day !== 1, ""];
+      },
       autoclose: true,
       dateFormat: "yy-mm-dd",
+    });
+
+    $("#timepicker").timepicker({
+      minuteStep: 60, // Display one-hour slots
+      showMeridian: false, // Use 24-hour format
+      disableTimeRanges: [
+        ["12:00 PM", "01:00 PM"], // Lunch time
+      ],
+      defaultTime: "08:00 AM", // Default starting time
     });
   }
 
